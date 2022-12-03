@@ -15,15 +15,17 @@ import org.openftc.easyopencv.OpenCvPipeline;
 public class ComputerVision {
 
     private OpenCvCamera phoneCam;
-    private int[][] region = new int[2][2];// top left coord + bottom right coord, 320 middle x, 240 middle y
-    region[0][0] = 320-50;
-    region[0][1] = 240-50;
-    region[1][0] = 320+50;
-    region[1][1] = 240+50;
+    //private int[2][2] region = new int[2][2];
+    //private int[][] region = new int[2][2];
+    private int[][] region = {{320-50,240-50}, {320+50, 240+50}};// top left coord + bottom right coord, 320 middle x, 240 middle y
+//    region[0][0] = 320-50;
+//    region[0][1] = 240-50;
+//    region[1][0] = 320+50;
+//    region[1][1] = 240+50;
     private final int[][] red = new int[2][3];
     private final int[][] green = new int[2][3];
     private final int[][] blue = new int[2][3];
-    private int[] avgRGB = new double[3];
+    private double[] avgRGB = new double[3];
     private int recognition;
     /*private final int fractions = 12;
     private final double[][] topLeft = new double[fractions][2];
@@ -43,7 +45,7 @@ public class ComputerVision {
             botRight[i][1] = ((double) (i + 1)) / ((double) fractions);
         }*/
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, camId);
-        phoneCam.setPipeline(new ComputerVision.Pipeline());
+        phoneCam.setPipeline(new ComputerVision.OpenCVPipeline());
         phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
@@ -57,9 +59,9 @@ public class ComputerVision {
 
     public boolean isColor(int[][] color) {
         return (
-                color[0][0] <= avgRGB[0] && avgRGB[0] <= color[1][0] &&
-                color[0][1] <= avgRGB[1] && avgRGB[1] <= color[1][1] &&
-                color[0][2] <= avgRGB[2] && avgRGB[2] = color[1][2]
+                (color[0][0] <= avgRGB[0]) && (avgRGB[0] <= color[1][0]) &&
+                        (color[0][1] <= avgRGB[1]) && (avgRGB[1] <= color[1][1]) &&
+                (color[0][2] <= avgRGB[2]) && (avgRGB[2] <= color[1][2])
                 );
     }
 
@@ -121,15 +123,14 @@ public class ComputerVision {
         return longestSeq;*/
     }
 
-    public  int[] getRGB() {
+    public double[] getRGB() {
         return avgRGB;
         }
 
-    public int getRecognition() {
         /*return (int) (Math.round((double) (longestSeq[1] + longestSeq[0]) / 2.)) / (fractions / 3);*/
-    }
 
-    public int[][] getRGB() //{return avgRGB;}
+
+    //public int[][] getRGB() //{return avgRGB;}
 
     class Pipeline extends OpenCvPipeline {
 
@@ -147,7 +148,7 @@ public class ComputerVision {
         @Override
         public void init(Mat firstFrame) {
             inputToCb(firstFrame);
-            regionMatrix = firstframe.submat(new  Rect(
+            regionMatrix = firstFrame.submat(new Rect(
                new Point(region[0][0], region[0][1]), //top left
                new Point(region[1][0], region[1][1])
             ));
@@ -169,7 +170,7 @@ public class ComputerVision {
             double[] avg;
             avg = Core.mean(regionMatrix).val;
             for (int i = 0; i<3; i++) {
-                avgRGB[i] = (int) avg[i];
+                avgRGB[i] = (int) avg[i]; //check this later
             }
             Imgproc.rectangle(
                     input,
@@ -205,8 +206,7 @@ public class ComputerVision {
 //                        new Scalar(0, 255, 0), 4);
 //            }
 
-            return input;
-        }
+            //return input;
 
         @Override
         public void onViewportTapped() {
