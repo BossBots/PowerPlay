@@ -45,7 +45,7 @@ public class ComputerVision {
             botRight[i][1] = ((double) (i + 1)) / ((double) fractions);
         }*/
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, camId);
-        phoneCam.setPipeline(new ComputerVision.OpenCVPipeline());
+        phoneCam.setPipeline(new ComputerVision.Pipeline());
         phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
@@ -121,6 +121,8 @@ public class ComputerVision {
             longestSeq[1] = currentSeq[1];
         }
         return longestSeq;*/
+        int[] testArray = {0,0,0};
+        return testArray;
     }
 
     public double[] getRGB() {
@@ -179,6 +181,7 @@ public class ComputerVision {
                     new Scalar(0,0,255),
                     4
             );
+            return regionMatrix;
         }
 //            for (int i = 0; i < fractions; i++) {
 //                regions[i] = input.submat(new Rect(
