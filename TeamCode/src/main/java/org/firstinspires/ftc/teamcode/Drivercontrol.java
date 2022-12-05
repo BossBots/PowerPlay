@@ -13,6 +13,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Drivercontrol extends LinearOpMode {
     // mecanum drive train
     private Mecanum mecanum;
+    private DcMotor frontLeft;
+    private DcMotor backLeft;
+    private DcMotor frontRight;
+    private DcMotor backRight;
 
     // wobble goal manipulation system
     private DcMotor pivot;
@@ -22,14 +26,13 @@ public class Drivercontrol extends LinearOpMode {
     private DcMotor launch;
     private DcMotor ramp;
     private CRServo intake;
-    private CRServo ramp_rings1;
-    private CRServo ramp_rings2;
+
 
 
     @Override
     public void runOpMode() {
         // mecanum initialization
-        mecanum = new Mecanum(hardwareMap.get(BNO055IMU.class, "imu"), hardwareMap.get(DcMotor.class, "motor1"), hardwareMap.get(DcMotor.class, "motor2"), hardwareMap.get(DcMotor.class, "motor3"), hardwareMap.get(DcMotor.class, "motor4"));
+        mecanum = new Mecanum(hardwareMap.get(BNO055IMU.class, "imu"), hardwareMap.get(DcMotor.class, "frontLeft"), hardwareMap.get(DcMotor.class, "backLeft"), hardwareMap.get(DcMotor.class, "frontRight"), hardwareMap.get(DcMotor.class, "backRight"));
         mecanum.constantPower();
 
         // wobble goal manipulation system initialization
@@ -43,8 +46,6 @@ public class Drivercontrol extends LinearOpMode {
         ramp = hardwareMap.get(DcMotor.class, "ramp");
         ramp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intake = hardwareMap.get(CRServo.class, "intake");
-        ramp_rings1 = hardwareMap.get(CRServo.class, "ramp_rings1");
-        ramp_rings2 = hardwareMap.get(CRServo.class, "ramp_rings2");
 
 
 
