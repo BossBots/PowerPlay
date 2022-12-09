@@ -125,10 +125,11 @@ public class ComputerVision {
         return testArray;
     }
 
-    public double[] getRGB() {
-        return avgRGB;
+    public double[] getRGB() {return avgRGB;
         }
-
+    public int getRecognition(){
+        return 0;
+    }
         /*return (int) (Math.round((double) (longestSeq[1] + longestSeq[0]) / 2.)) / (fractions / 3);*/
 
 

@@ -38,6 +38,16 @@ public class Mecanum {
     private double p3;
     private double p4;
 
+    //odometry stuff??
+    private int counts;
+    private int[] initEncoderPos;
+    private int[] finalEncoderPos;
+    private double displacement;
+    private double[] pos = new double[2];
+    private final double CONVERSION = 2. * Math.PI * 0.0254 / 480.; // meters per count
+    public double[] getPos() {return pos;}
+    public int[] getEncoderPos() {return finalEncoderPos;}
+
     // constructor
     public Mecanum(BNO055IMU i, DcMotor m1, DcMotor m2, DcMotor m3, DcMotor m4) {
         imu = i;
