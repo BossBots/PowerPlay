@@ -31,12 +31,12 @@ public class Drivercontrol extends LinearOpMode {
         linearSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         claw = hardwareMap.get(Servo.class, "clawServo");
-        claw.setPosition(0); // 0 is open
+        claw.setPosition(0.5); // 0 is open
         waitForStart();
 
         while (opModeIsActive()) {
             //linear  slide controls
-            if(Math.abs(gamepad2.right_stick_y)<0.1) {
+            if (Math.abs(gamepad2.right_stick_y)<0.1) {
                 linearSlideMotor.setPower(0);
             } else {
                 linearSlideMotor.setPower(0.15*gamepad2.right_stick_y);
@@ -48,7 +48,7 @@ public class Drivercontrol extends LinearOpMode {
             }
             oldState= currentState;
             if(clawAction){
-                claw.setPosition(1); // closed
+                claw.setPosition(0.5); // closed
             } else {
                 claw.setPosition(0); // open
             }
