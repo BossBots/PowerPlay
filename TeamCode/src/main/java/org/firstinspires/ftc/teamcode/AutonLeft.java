@@ -35,6 +35,7 @@ public class AutonLeft extends LinearOpMode {
 
         cv = new ComputerVision(hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()));
         waitForStart();
+
         if (opModeIsActive()){
             recognition = 1; //cv.getRecognition()
             if (recognition == 1){

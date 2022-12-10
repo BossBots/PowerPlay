@@ -10,7 +10,7 @@ This program is for testing ComputerVision. It prints avgRGB within the targette
 
 
 @TeleOp
-public class AutonLeft extends LinearOpMode {
+public class CVTest extends LinearOpMode {
 
     private ComputerVision cv;
     private int recognition;
