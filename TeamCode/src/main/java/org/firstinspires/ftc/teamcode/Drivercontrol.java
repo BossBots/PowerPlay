@@ -39,7 +39,7 @@ public class Drivercontrol extends LinearOpMode {
             if (Math.abs(gamepad2.right_stick_y)<0.1) {
                 linearSlideMotor.setPower(0);
             } else {
-                linearSlideMotor.setPower(0.15*gamepad2.right_stick_y);
+                linearSlideMotor.setPower(0.2*gamepad2.right_stick_y);
             }
             //claw
             currentState= gamepad2.a;
@@ -48,7 +48,7 @@ public class Drivercontrol extends LinearOpMode {
             }
             oldState= currentState;
             if(clawAction){
-                claw.setPosition(0.5); // closed
+                claw.setPosition(-0.5); // closed
             } else {
                 claw.setPosition(0); // open
             }
@@ -60,6 +60,7 @@ public class Drivercontrol extends LinearOpMode {
 
 
             }
+            telemetry.addData("status", clawAction);
             telemetry.update();
 
         }
