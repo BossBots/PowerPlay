@@ -20,36 +20,41 @@ public class ComputerVision {
     // width of image is 640
     // height of image is 480
     private final int[][] region =  {{320 - 70, 240 - 20}, {320 + 70, 240 + 20}};//new int[2][2];
-    /*region[0][0] = 320 - 70;    // top left x
+    /*
+    region[0][0] = 320 - 70;    // top left x
     region[0][1] = 240 - 20;    // top left y
     region[1][0] = 320 + 70;    // bottom right x
-    region[1][1] = 240 + 20;    // bottom right y*/
-
+    region[1][1] = 240 + 20;    // bottom right y
+    */
     // change these colors to whatever you select. make sure you choose appropriate min and max thresholds
-    private final int[][] color1 = {{100, 0, 100}, {255, 100, 255}};
-    /*color1[0][0] = 100; // color1 min R
-    color1[0][1] = 0;   // color1 min G
-    color1[0][2] = 100; // color1 min B
-    color1[1][0] = 255; // color1 max R
-    color1[1][1] = 100; // color1 min G
-    color1[1][2] = 255; // color1 max B*/
+    private final int[][] magenta = {{100, 0, 100}, {255, 100, 255}};
+    /*
+    magenta[0][0] = 100; // color1 min R
+    magenta[0][1] = 0;   // color1 min G
+    magenta[0][2] = 100; // color1 min B
+    magenta[1][0] = 255; // color1 max R
+    magenta[1][1] = 100; // color1 min G
+    magenta[1][2] = 255; // color1 max B
+    */
+    private final int[][] orange = {{255, 100, 0}, {255, 150, 30}};
 
-    private final int[][] color2 = {{0, 100, 0}, {100, 255, 100}};
-    /*color2[0][0] = 0;   // color2 min R
-    color2[0][1] = 100; // color2 min G
-    color2[0][2] = 0;   // color2 min B
-    color2[1][0] = 100; // color2 max R
-    color2[1][1] = 255; // color2 max G
-    color2[1][2] = 100; // color2 max B*/
-
-    private final int[][] color3 = {{100, 75, 0}, {255, 200, 100}};
-    /*color3[0][0] = 100; // color3 min R
-    color3[0][1] = 75;  // color3 min G
-    color3[0][2] = 0;   // color3 min B
-    color3[1][0] = 255; // color3 max R
-    color3[1][1] = 200; // color3 max G
-    color3[1][2] = 100; // color3 max B*/
-
+    /*
+    orange[0][0] = 255;   // color2 min R
+    orange[0][1] = 100; // color2 min G
+    orange[0][2] = 0;   // color2 min B
+    orange[1][0] = 255; // color2 max R
+    orange[1][1] = 150; // color2 max G
+    orange[1][2] = 30; // color2 max B
+    */
+    private final int[][] green = {{0, 100, 0}, {50, 255, 20}};
+    /*
+    green[0][0] = 0; // color3 min R
+    green[0][1] = 100;  // color3 min G
+    green[0][2] = 0;   // color3 min B
+    green[1][0] = 50; // color3 max R
+    green[1][1] = 255; // color3 max G
+    green[1][2] = 20; // color3 max B
+    */
     private int[] avgRGB = new int[3];
     private int recognition;
 
@@ -76,9 +81,9 @@ public class ComputerVision {
     }
 
     public void analyze() {
-        if (isColor(color1)) {
+        if (isColor(magenta)) {
             recognition = 1;
-        } else if (isColor(color2)) {
+        } else if (isColor(orange)) {
             recognition = 2;
         } else {
             recognition = 3;
