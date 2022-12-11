@@ -1,13 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous
-public class AutonLeft extends LinearOpMode {
+public class AutonRight extends LinearOpMode {
 
     private DcMotor linearSlideMotor;
     private Mecanum mecanum;
@@ -44,8 +44,8 @@ public class AutonLeft extends LinearOpMode {
 
 
 
-            mecanum.forward(0.2, 0, 1200);
-
+            mecanum.yaw(0.4, -90);
+            mecanum.forward(0.4, 0, 1400);
 
 
             /*

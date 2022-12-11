@@ -12,9 +12,9 @@ public class Drivercontrol extends LinearOpMode {
     private DcMotor linearSlideMotor;
     private Mecanum mecanum;
     private Servo claw;
-    private boolean oldState = false;
+//    private boolean oldState = false;
     private boolean currentState;
-    private boolean clawAction = false;
+//    private boolean clawAction = false;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -31,7 +31,7 @@ public class Drivercontrol extends LinearOpMode {
         linearSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         claw = hardwareMap.get(Servo.class, "clawServo");
-        claw.setPosition(0.5); // 0 is open
+        claw.setPosition(0.4); // 0 is open
         waitForStart();
 
         while (opModeIsActive()) {
@@ -39,30 +39,36 @@ public class Drivercontrol extends LinearOpMode {
             if (Math.abs(gamepad2.right_stick_y)<0.1) {
                 linearSlideMotor.setPower(0);
             } else {
-                linearSlideMotor.setPower(0.2*gamepad2.right_stick_y);
+                linearSlideMotor.setPower(0.55*gamepad2.right_stick_y);
             }
             //claw
+
             currentState= gamepad2.a;
-            if(!oldState && currentState){
-                clawAction = !clawAction;
+            if(currentState){
+                claw.setPosition(0.1); // closed
             }
-            oldState= currentState;
-            if(clawAction){
-                claw.setPosition(-0.5); // closed
-            } else {
-                claw.setPosition(0); // open
+            else{
+                claw.setPosition(0.3);
             }
+//            (!oldState && currentState){
+//                clawAction = !clawAction;
+//            }
+//            oldState= currentState;
+//            if(clawAction){
+//                claw.setPosition(0.4); // closed
+//            } else {
+//                claw.setPosition(0.1); // open
+//            }
             //driving
             if (gamepad1.x) {
                 mecanum.brake(10);
+            } else if (gamepad1.a) {
+                mecanum.drive( 0.5 * (gamepad1.right_trigger - gamepad1.left_trigger),
+                        0.5 * (gamepad1.left_stick_x), 0.5 * (gamepad1.right_stick_x));
             } else {
-                mecanum.drive(gamepad1.right_trigger - gamepad1.left_trigger, gamepad1.left_stick_x, gamepad1.right_stick_x);
-
-
+                mecanum.drive(gamepad1.right_trigger - gamepad1.left_trigger,
+                        gamepad1.left_stick_x, gamepad1.right_stick_x);
             }
-            telemetry.addData("status", clawAction);
-            telemetry.update();
-
         }
     }
 }
