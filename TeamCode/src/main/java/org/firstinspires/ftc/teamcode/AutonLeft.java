@@ -32,7 +32,7 @@ public class AutonLeft extends LinearOpMode {
         linearSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         claw = hardwareMap.get(Servo.class, "clawServo");
-        claw.setPosition(0.3);   // assuming 0 is an open claw
+        claw.setPosition(0.3);   // closed claw
 
         // cv = new ComputerVision(hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()));
 
