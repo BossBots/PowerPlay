@@ -29,6 +29,7 @@ public class AutonRight extends LinearOpMode {
         mecanum.constantSpeed();
 
         linearSlideMotor = hardwareMap.get(DcMotor.class, "linearSlide");
+        linearSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         linearSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         claw = hardwareMap.get(Servo.class, "clawServo");
@@ -41,18 +42,18 @@ public class AutonRight extends LinearOpMode {
         if (opModeIsActive()) {
             linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             linearSlideMotor.setTargetPosition(-2700);
-            linearSlideMotor.setPower(-0.1);
+            linearSlideMotor.setPower(-0.25);
             mecanum.forward(0.2, 0, 1200);
             while (linearSlideMotor.isBusy()){
                 idle();
             }
             linearSlideMotor.setPower(0);
             linearSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            mecanum.yaw(0.25, 45);
-            mecanum.forward(0.1, 0, 500);
+            mecanum.yaw(-0.25, 45);
+            mecanum.forward(0.1, 0, 800);
             claw.setPosition(0.1);
-            mecanum.forward(-0.1, 180,500);
-            mecanum.yaw(-0.25, -135);
+            mecanum.forward(-0.1, 180,800);
+            mecanum.yaw(0.25, -135);
             if (recognition ==3){ //orange
                 mecanum.forward(0.2, 0, 1200);
             } else if (recognition ==1){ //green
@@ -60,7 +61,7 @@ public class AutonRight extends LinearOpMode {
             } else if (recognition ==4){ //none
                 mecanum.yaw(-0.25, -90);
                 mecanum.forward(0.2, 0, 1200);
-                mecanum.yaw(0.25, 90);
+                mecanum.yaw(-0.25, 90);
                 mecanum.forward(0.2, 0, 1200);
             }
 
