@@ -19,7 +19,7 @@ public class ComputerVision {
     // change matrix region to whatever is best visible
     // width of image is 640
     // height of image is 480
-    private final int[][] region =  {{320 - 70, 240 - 20}, {320 + 70, 240 + 20}};//new int[2][2];
+    private final int[][] region =  {{320 - 70, 240 - 70}, {320 + 70, 240 + 70}};//new int[2][2];
     /*
     region[0][0] = 320 - 70;    // top left x
     region[0][1] = 240 - 20;    // top left y
@@ -27,7 +27,7 @@ public class ComputerVision {
     region[1][1] = 240 + 20;    // bottom right y
     */
     // change these colors to whatever you select. make sure you choose appropriate min and max thresholds
-    private final int[][] magenta = {{100, 0, 100}, {255, 100, 255}};
+    private final int[][] magenta = {{150, 49, 170}, {190, 89, 210}};
     /*
     magenta[0][0] = 100; // color1 min R
     magenta[0][1] = 0;   // color1 min G
@@ -36,7 +36,7 @@ public class ComputerVision {
     magenta[1][1] = 100; // color1 min G
     magenta[1][2] = 255; // color1 max B
     */
-    private final int[][] orange = {{255, 100, 0}, {255, 150, 30}};
+    private final int[][] orange = {{188, 80, 5}, {228, 140, 45}};
 
     /*
     orange[0][0] = 255;   // color2 min R
@@ -46,7 +46,7 @@ public class ComputerVision {
     orange[1][1] = 150; // color2 max G
     orange[1][2] = 30; // color2 max B
     */
-    private final int[][] green = {{0, 100, 0}, {50, 255, 20}};
+    private final int[][] green = {{0, 125, 0}, {36, 165, 20}};
     /*
     green[0][0] = 0; // color3 min R
     green[0][1] = 100;  // color3 min G
@@ -82,12 +82,13 @@ public class ComputerVision {
 
     public void analyze() {
         if (isColor(magenta)) {
-            recognition = 1;
-        } else if (isColor(orange)) {
             recognition = 2;
-        } else {
+        } else if (isColor(orange)) {
             recognition = 3;
-        }
+        } else if (isColor(green)){
+            recognition = 1;
+        } else
+            recognition = 4;
     }
 
     public int getRecognition() {

@@ -32,20 +32,25 @@ public class AutonRight extends LinearOpMode {
         linearSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         claw = hardwareMap.get(Servo.class, "clawServo");
-        claw.setPosition(0.3);   // assuming 0 is an open claw
+        claw.setPosition(0.3);   // assuming 0.3 is an open claw
 
         // cv = new ComputerVision(hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()));
 
         waitForStart();
 
         if (opModeIsActive()) {
+            if(recognition == 2) { //magenta
+                mecanum.forward(0.2, 0, 1200);
+                linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                linearSlideMotor.setTargetPosition();
+            } else if (recognition ==3){ //orange
 
-            recognition = 1; // cv.getRecognition();
+            } else if (recognition ==1){ //green
 
+            } else{
 
+            }
 
-            mecanum.yaw(0.4, -90);
-            mecanum.forward(0.4, 0, 1400);
 
 
             /*
