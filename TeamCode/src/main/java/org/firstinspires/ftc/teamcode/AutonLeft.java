@@ -40,7 +40,7 @@ public class AutonLeft extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            recognition = 1; // cv.getRecognition();
+            //recognition = 1; // cv.getRecognition();
 
 
 
@@ -48,7 +48,7 @@ public class AutonLeft extends LinearOpMode {
 
 
 
-            /*
+
             // power, angle, duration
             mecanum.forward(0.5, 0, 2000);
 
@@ -57,7 +57,7 @@ public class AutonLeft extends LinearOpMode {
 
             // power, angle, duration
             mecanum.drift(0.5, 90, 2000);
-            */
+
 
 //            if (recognition == 1) {
 //

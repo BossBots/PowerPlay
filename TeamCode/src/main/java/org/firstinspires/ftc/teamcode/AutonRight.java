@@ -40,8 +40,8 @@ public class AutonRight extends LinearOpMode {
         waitForStart();
         claw.setPosition(0.3);
         if (opModeIsActive()) {
-            linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             linearSlideMotor.setTargetPosition(-2700);
+            linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             linearSlideMotor.setPower(-0.25);
             mecanum.forward(0.2, 0, 1200);
             while (linearSlideMotor.isBusy()){

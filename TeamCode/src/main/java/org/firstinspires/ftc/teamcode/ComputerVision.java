@@ -19,7 +19,7 @@ public class ComputerVision {
     // change matrix region to whatever is best visible
     // width of image is 640
     // height of image is 480
-    private final int[][] region =  {{320 - 70, 360 - 70}, {320 + 70, 360 + 70}};//new int[2][2];
+    private final int[][] region =  {{280 - 50, 480 - 0}, {280 + 50, 480 + 40}};//new int[2][2];
     /*
     region[0][0] = 320 - 70;    // top left x
     region[0][1] = 240 - 20;    // top left y
@@ -27,7 +27,7 @@ public class ComputerVision {
     region[1][1] = 240 + 20;    // bottom right y
     */
     // change these colors to whatever you select. make sure you choose appropriate min and max thresholds
-    private final int[][] magenta = {{200, 70, 150}, {240, 110, 190}};
+    private final int[][] magenta = {{150, 110, 165}, {190, 150, 205}};
     /*
     magenta[0][0] = 100; // color1 min R
     magenta[0][1] = 0;   // color1 min G
@@ -36,7 +36,7 @@ public class ComputerVision {
     magenta[1][1] = 100; // color1 min G
     magenta[1][2] = 255; // color1 max B
     */
-    private final int[][] orange = {{188, 105, 18}, {228, 145, 58}};
+    private final int[][] orange = {{157, 154, 120}, {197, 194, 160}};
 
     /*
     orange[0][0] = 255;   // color2 min R
@@ -46,7 +46,7 @@ public class ComputerVision {
     orange[1][1] = 150; // color2 max G
     orange[1][2] = 30; // color2 max B
     */
-    private final int[][] green = {{15, 150, 10}, {55, 190, 50}};
+    private final int[][] green = {{55, 145, 120}, {95, 185, 150}};
     /*
     green[0][0] = 0; // color3 min R
     green[0][1] = 100;  // color3 min G
