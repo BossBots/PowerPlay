@@ -40,26 +40,26 @@ public class AutonRight extends LinearOpMode {
         waitForStart();
         claw.setPosition(0.3);
         if (opModeIsActive()) {
-            linearSlideMotor.setTargetPosition(-2700);
+            linearSlideMotor.setTargetPosition(-3500);
             linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            linearSlideMotor.setPower(-0.25);
-            mecanum.forward(0.2, 0, 1200);
+            linearSlideMotor.setPower(-0.3);
+            mecanum.forward(0.2, 0, 1250);
             while (linearSlideMotor.isBusy()){
                 idle();
             }
             linearSlideMotor.setPower(0);
             linearSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            mecanum.yaw(-0.25, 45);
-            mecanum.forward(0.1, 0, 800);
+            mecanum.yaw(-0.25, 40);
+            mecanum.forward(0.1, 0, 1300);
             claw.setPosition(0.1);
             mecanum.forward(-0.1, 180,800);
-            mecanum.yaw(0.25, -135);
+            mecanum.yaw(0.25, -130);
             if (recognition ==3){ //orange
                 mecanum.forward(0.2, 0, 1200);
             } else if (recognition ==1){ //green
                 mecanum.forward(-0.2, 0, -1200);
             } else if (recognition ==4){ //none
-                mecanum.yaw(-0.25, -90);
+                mecanum.yaw(0.25, -90);
                 mecanum.forward(0.2, 0, 1200);
                 mecanum.yaw(-0.25, 90);
                 mecanum.forward(0.2, 0, 1200);
