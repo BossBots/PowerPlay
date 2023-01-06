@@ -35,12 +35,15 @@ public class AutonRight extends LinearOpMode {
         claw = hardwareMap.get(Servo.class, "clawServo");
         claw.setPosition(0.3);   // assuming 0.3 is an open claw
 
-        cv = new ComputerVision(hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()));
+        ComputerVision cv = new ComputerVision(hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()));
 
         waitForStart();
         recognition = cv.getRecognition();
+
         claw.setPosition(0.3);
         if (opModeIsActive()) {
+            telemetry.addData("recognition", recognition);
+            telemetry.update();
             linearSlideMotor.setTargetPosition(-3300);
             linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             linearSlideMotor.setPower(-0.3);
@@ -51,18 +54,18 @@ public class AutonRight extends LinearOpMode {
             linearSlideMotor.setPower(0);
             linearSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             mecanum.yaw(-0.25, 35);
-            mecanum.forward(0.1, 0, 1500);
+            mecanum.forward(0.1, 0, 1300);
             claw.setPosition(0.1);
             mecanum.forward(-0.1, 180,800);
             mecanum.yaw(0.25, -86);
             if (recognition ==3){ //orange
                 mecanum.forward(0.2, 0, 1200);
             } else if (recognition ==1){ //green
-                mecanum.forward(-0.2, 0, -1200);
+                mecanum.forward(-0.2, 180, 1200);
             } else if (recognition ==4){ //none
                 mecanum.yaw(0.25, -90);
                 mecanum.forward(0.2, 0, 1200);
-                mecanum.yaw(-0.25, 90);
+                mecanum.yaw(0.25, -90);
                 mecanum.forward(0.2, 0, 1200);
             }
 
