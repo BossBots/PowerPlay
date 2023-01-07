@@ -56,7 +56,7 @@ public class ComputerVision {
     green[1][2] = 20; // color3 max B
     */
     private int[] avgRGB = new int[3];
-    private int recognition;
+    private int recognition=4;
 
     public ComputerVision(int camId) {
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, camId);

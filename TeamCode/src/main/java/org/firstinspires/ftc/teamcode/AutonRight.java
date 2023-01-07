@@ -35,16 +35,16 @@ public class AutonRight extends LinearOpMode {
         claw = hardwareMap.get(Servo.class, "clawServo");
         claw.setPosition(0.3);   // assuming 0.3 is an open claw
 
-        ComputerVision cv = new ComputerVision(hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()));
+        //ComputerVision cv = new ComputerVision(hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()));
 
         waitForStart();
-        recognition = cv.getRecognition();
+        recognition = 3;//cv.getRecognition();
 
         claw.setPosition(0.3);
         if (opModeIsActive()) {
             telemetry.addData("recognition", recognition);
             telemetry.update();
-            linearSlideMotor.setTargetPosition(-3300);
+            linearSlideMotor.setTargetPosition(-3100);
             linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             linearSlideMotor.setPower(-0.3);
             mecanum.forward(0.2, 0, 1250);
@@ -53,20 +53,24 @@ public class AutonRight extends LinearOpMode {
             }
             linearSlideMotor.setPower(0);
             linearSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            mecanum.yaw(-0.25, 35);
-            mecanum.forward(0.1, 0, 1300);
+            mecanum.yaw(-0.15, 35);
+            mecanum.forward(0.07, 0, 1500);
+            linearSlideMotor.setTargetPosition(-2500);
+            linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            linearSlideMotor.setPower(0.3);
+            while (linearSlideMotor.isBusy()){
+                idle();
+            }
             claw.setPosition(0.1);
             mecanum.forward(-0.1, 180,800);
-            mecanum.yaw(0.25, -86);
+            mecanum.yaw(0.25, -75);
             if (recognition ==3){ //orange
                 mecanum.forward(0.2, 0, 1200);
             } else if (recognition ==1){ //green
                 mecanum.forward(-0.2, 180, 1200);
             } else if (recognition ==4){ //none
-                mecanum.yaw(0.25, -90);
-                mecanum.forward(0.2, 0, 1200);
-                mecanum.yaw(0.25, -90);
-                mecanum.forward(0.2, 0, 1200);
+                mecanum.yaw(0.25, -135);
+                mecanum.forward(0.2, 0, 1300);
             }
 
 
