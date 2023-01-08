@@ -15,6 +15,9 @@ public class Drivercontrol extends LinearOpMode {
 //    private boolean oldState = false;
     private boolean currentState;
 //    private boolean clawAction = false;
+    private boolean oldState = false;
+    private boolean newState;
+    private boolean precisionMode = false;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -40,7 +43,7 @@ public class Drivercontrol extends LinearOpMode {
                 linearSlideMotor.setPower(0);
                 linearSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             } else {
-                linearSlideMotor.setPower(0.75*gamepad2.right_stick_y);
+                linearSlideMotor.setPower(1.1 * 0.75*gamepad2.right_stick_y);
             }
             //claw
 
@@ -61,15 +64,25 @@ public class Drivercontrol extends LinearOpMode {
 //                claw.setPosition(0.1); // open
 //            }
             //driving
+
+            newState = gamepad1.a;
+            if (newState && !oldState) {
+                precisionMode = !precisionMode;
+            }
+            oldState = newState;
+
             if (gamepad1.x) {
                 mecanum.brake(10);
-            } else if (gamepad1.a) {
+            } else if (precisionMode) {
                 mecanum.drive( 0.5 * (gamepad1.right_trigger - gamepad1.left_trigger),
                         0.5 * (gamepad1.left_stick_x), 0.5 * (gamepad1.right_stick_x));
             } else {
                 mecanum.drive(gamepad1.right_trigger - gamepad1.left_trigger,
                         gamepad1.left_stick_x, gamepad1.right_stick_x);
             }
+
+            telemetry.addData("precision mode", precisionMode);
+            telemetry.update();
         }
     }
 }
