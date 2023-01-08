@@ -38,7 +38,7 @@ public class AutonRight extends LinearOpMode {
         //ComputerVision cv = new ComputerVision(hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()));
 
         waitForStart();
-        recognition = 3;//cv.getRecognition();
+        recognition = 4;//cv.getRecognition();
 
         claw.setPosition(0.3);
         if (opModeIsActive()) {
@@ -47,7 +47,7 @@ public class AutonRight extends LinearOpMode {
             linearSlideMotor.setTargetPosition(-3100);
             linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             linearSlideMotor.setPower(-0.3);
-            mecanum.forward(0.2, 0, 1250);
+            mecanum.forward(0.2, 0, 1300);
             while (linearSlideMotor.isBusy()){
                 idle();
             }
@@ -69,8 +69,10 @@ public class AutonRight extends LinearOpMode {
             } else if (recognition ==1){ //green
                 mecanum.forward(-0.2, 180, 1200);
             } else if (recognition ==4){ //none
-                mecanum.yaw(0.25, -135);
-                mecanum.forward(0.2, 0, 1300);
+                mecanum.yaw(0.25, -133);
+                mecanum.forward(0.2, 0, 1250);
+                mecanum.yaw(-0.25, -90);
+                mecanum.forward(0.2, 0, 600);
             }
 
 

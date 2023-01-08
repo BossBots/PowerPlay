@@ -40,7 +40,7 @@ public class Drivercontrol extends LinearOpMode {
                 linearSlideMotor.setPower(0);
                 linearSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             } else {
-                linearSlideMotor.setPower(0.55*gamepad2.right_stick_y);
+                linearSlideMotor.setPower(0.75*gamepad2.right_stick_y);
             }
             //claw
 
