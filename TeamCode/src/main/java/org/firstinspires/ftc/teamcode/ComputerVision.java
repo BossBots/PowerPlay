@@ -27,7 +27,7 @@ public class ComputerVision {
     region[1][1] = 240 + 20;    // bottom right y
     */
     // change these colors to whatever you select. make sure you choose appropriate min and max thresholds
-    private final int[][] magenta = {{150, 110, 165}, {190, 150, 205}};
+    private final int[][] magenta = {{80, 50, 82}, {120, 90, 122}};
     /*
     magenta[0][0] = 100; // color1 min R
     magenta[0][1] = 0;   // color1 min G
@@ -36,7 +36,7 @@ public class ComputerVision {
     magenta[1][1] = 100; // color1 min G
     magenta[1][2] = 255; // color1 max B
     */
-    private final int[][] orange = {{157, 154, 120}, {197, 194, 160}};
+    private final int[][] orange = {{110, 89, 80}, {130, 129, 120}};
 
     /*
     orange[0][0] = 255;   // color2 min R
@@ -46,7 +46,7 @@ public class ComputerVision {
     orange[1][1] = 150; // color2 max G
     orange[1][2] = 30; // color2 max B
     */
-    private final int[][] green = {{55, 145, 120}, {95, 185, 150}};
+    private final int[][] green = {{55, 83, 73}, {95, 123, 113}};
     /*
     green[0][0] = 0; // color3 min R
     green[0][1] = 100;  // color3 min G

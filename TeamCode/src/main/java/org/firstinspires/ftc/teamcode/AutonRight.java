@@ -35,26 +35,26 @@ public class AutonRight extends LinearOpMode {
         claw = hardwareMap.get(Servo.class, "clawServo");
         claw.setPosition(0.3);   // assuming 0.3 is an open claw
 
-        //ComputerVision cv = new ComputerVision(hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()));
+        ComputerVision cv = new ComputerVision(hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()));
 
         waitForStart();
-        recognition = 4;//cv.getRecognition();
+        recognition = cv.getRecognition();
 
         claw.setPosition(0.3);
         if (opModeIsActive()) {
             telemetry.addData("recognition", recognition);
             telemetry.update();
-            linearSlideMotor.setTargetPosition(-3100);
+            linearSlideMotor.setTargetPosition(-3300);
             linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             linearSlideMotor.setPower(-0.3);
-            mecanum.forward(0.2, 0, 1300);
+            mecanum.forward(0.2, 0, 1200);
             while (linearSlideMotor.isBusy()){
                 idle();
             }
             linearSlideMotor.setPower(0);
             linearSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             mecanum.yaw(-0.15, 35);
-            mecanum.forward(0.07, 0, 1500);
+            mecanum.forward(0.07, 0, 1400);
             linearSlideMotor.setTargetPosition(-2500);
             linearSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             linearSlideMotor.setPower(0.3);
@@ -70,9 +70,9 @@ public class AutonRight extends LinearOpMode {
                 mecanum.forward(-0.2, 180, 1200);
             } else if (recognition ==4){ //none
                 mecanum.yaw(0.25, -133);
-                mecanum.forward(0.2, 0, 1250);
+                mecanum.forward(0.2, 0, 1400);
                 mecanum.yaw(-0.25, -90);
-                mecanum.forward(0.2, 0, 600);
+                mecanum.forward(0.2, 0, 800);
             }
 
 
